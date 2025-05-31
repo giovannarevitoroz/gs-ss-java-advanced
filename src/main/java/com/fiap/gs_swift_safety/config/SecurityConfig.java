@@ -21,29 +21,32 @@ public class SecurityConfig {
     @Autowired
     private AuthenticationProvider authenticationProvider;
 
+    //BEAN PARA PERMITIR TODAS REQUISIÇOES PARA TESTES
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll() // <--- permite tudo
                 )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
+
 }
 
-//BEAN PARA PERMITIR TODAS REQUISIÇOES
+//BEAN COM AUTENTICAÇÃO JWT
 //@Bean
 //public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //    return http
 //            .csrf(csrf -> csrf.disable())
 //            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 //            .authorizeHttpRequests(auth -> auth
-//                    .anyRequest().permitAll() // <--- permite tudo
+//                    .requestMatchers("/auth/**").permitAll()
+//                    .anyRequest().authenticated()
 //            )
 //            .authenticationProvider(authenticationProvider)
 //            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
