@@ -11,7 +11,7 @@ public class AlertaDTO extends RepresentationModel {
     @Schema(description = "ID do alerta", example = "1")
     private Long id;
 
-    @Schema(description = "Nível de risco do alerta", example = "Alto")
+    @Schema(description = "Nível de risco do alerta", example = "Atenção")
     private String nivelRisco;
 
     @Schema(description = "Data do alerta", example = "2024-10-01")
