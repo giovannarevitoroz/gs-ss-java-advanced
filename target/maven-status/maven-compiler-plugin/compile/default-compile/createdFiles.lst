@@ -15,6 +15,7 @@ com\fiap\gs_swift_safety\model\Endereco.class
 com\fiap\gs_swift_safety\service\JwtService.class
 com\fiap\gs_swift_safety\exception\ResourceNotFoundException.class
 com\fiap\gs_swift_safety\config\CorsConfig.class
+com\fiap\gs_swift_safety\config\ModelMapperConfig.class
 com\fiap\gs_swift_safety\dto\UsuarioDTO.class
 com\fiap\gs_swift_safety\config\SecurityConfig.class
 com\fiap\gs_swift_safety\dto\AlertaDTO.class

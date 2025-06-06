@@ -5,33 +5,31 @@ import jakarta.validation.constraints.*;
 import org.springframework.hateoas.RepresentationModel;
 
 @Schema(description = "DTO que representa um usuário do sistema")
-public class UsuarioDTO extends RepresentationModel {
-
+public class UsuarioDTO extends RepresentationModel<UsuarioDTO> {
     @Schema(description = "ID único do usuário", example = "1")
     private Long idUsuario;
 
     @NotBlank
-    @Schema(description = "Nome completo do usuário", example = "João da Silva")
+    @Schema(description = "Nome completo do usuário", example = "João da Silva", required = true)
     private String nomeUsuario;
 
-    @Email
-    @Schema(description = "E-mail do usuário", example = "joao.silva@email.com")
+    @NotBlank @Email
+    @Schema(description = "E-mail do usuário", example = "joao.silva@email.com", required = true)
     private String emailUsuario;
 
     @NotBlank
-    @Schema(description = "Senha do usuário", example = "senhaSegura123")
+    @Schema(description = "Senha do usuário", example = "senhaSegura123", required = true)
     private String senhaUsuario;
 
     @NotBlank
-    @Schema(description = "Telefone do usuário (apenas números)", example = "11999998888")
+    @Schema(description = "Telefone do usuário", example = "11999998888", required = true)
     private String telefoneUsuario;
 
     @NotBlank
-    @Schema(description = "Tipo do usuário (ex: 'Admin', 'Voluntário', 'Morador')", example = "Morador")
+    @Pattern(regexp = "Usuário|Funcionário",
+            message = "Tipo de usuário deve ser 'Usuário' ou 'Funcionário'")
+    @Schema(description = "Tipo do usuário", example = "Usuário", allowableValues = {"Usuário", "Funcionário"}, required = true)
     private String tipoUsuario;
-
-    // Getters e setters
-
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -41,43 +39,43 @@ public class UsuarioDTO extends RepresentationModel {
         this.idUsuario = idUsuario;
     }
 
-    public @NotBlank String getNomeUsuario() {
+    public String getNomeUsuario() {
         return nomeUsuario;
     }
 
-    public void setNomeUsuario(@NotBlank String nomeUsuario) {
+    public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public @Email String getEmailUsuario() {
+    public String getEmailUsuario() {
         return emailUsuario;
     }
 
-    public void setEmailUsuario(@Email String emailUsuario) {
+    public void setEmailUsuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;
     }
 
-    public @NotBlank String getSenhaUsuario() {
+    public String getSenhaUsuario() {
         return senhaUsuario;
     }
 
-    public void setSenhaUsuario(@NotBlank String senhaUsuario) {
+    public void setSenhaUsuario(String senhaUsuario) {
         this.senhaUsuario = senhaUsuario;
     }
 
-    public @NotBlank String getTelefoneUsuario() {
+    public String getTelefoneUsuario() {
         return telefoneUsuario;
     }
 
-    public void setTelefoneUsuario(@NotBlank String telefoneUsuario) {
+    public void setTelefoneUsuario(String telefoneUsuario) {
         this.telefoneUsuario = telefoneUsuario;
     }
 
-    public @NotBlank String getTipoUsuario() {
+    public String getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(@NotBlank String tipoUsuario) {
+    public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 }
